@@ -30,6 +30,8 @@ endmodule
 
 
 
+
+
 ## TestBench Program
 module tb;
     reg A, B;
@@ -119,6 +121,8 @@ was minimized to F=B'D'+BD.
 and successfully implemented using Verilog HDL.
 
 ## OUTPUT
+<img width="1920" height="1080" alt="Screenshot 2026-10-21 155735" src="https://github.com/user-attachments/assets/6ee88093-a47e-4449-8354-4a4a3cf82ee1" />
+
 
 
 
