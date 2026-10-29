@@ -31,7 +31,6 @@ assign F = (~B & ~D)|(B & D) ;    // F = B'D' + BD
 endmodule
 
 ## TestBench Program
-
 module boolfun_tb;
 
 reg A, B, C, D;
@@ -79,12 +78,10 @@ end
 endmodule
 
 
-
-
     
 ## Truth Table
  
-<img width="622" height="675" alt="WhatsApp Image 2026-10-29 at 15 58 45" src="https://github.com/user-attachments/assets/65d3ae51-f80b-4684-9df5-c68b7a00ee92" />
+<img width="622" height="675" alt="WhatsApp Image 2026-10-29 at 15 58 45" src="https://github.com/user-attachments/assets/e6fdc840-bed7-41ba-b78a-1ef5fee6da19" />
 
 STEP 1 – Open Terminal
 Open a terminal in the experiment folder.
@@ -111,7 +108,7 @@ Other option
 dve -full64 &
 A DVE environment will open.
 ### Expected Result
-<img width="598" height="369" alt="WhatsApp Image 2026-10-29 at 15 59 00" src="https://github.com/user-attachments/assets/4c7d7f7b-4f80-4928-9de4-898076bbe389" />
+<img width="598" height="369" alt="WhatsApp Image 2026-10-29 at 15 59 00" src="https://github.com/user-attachments/assets/370cd583-c446-459f-9c3b-968382de12fa" />
 
 ## DVE Waveform Verification
 In DVE:
@@ -132,7 +129,7 @@ The waveform should agree with the truth table.
 
 
 ## OUTPUT
-<img width="1366" height="1157" alt="WhatsApp Image 2026-10-29 at 15 58 34" src="https://github.com/user-attachments/assets/9d16b8b0-2f62-492e-b951-e54c4b7395c0" />
+<img width="1366" height="1157" alt="WhatsApp Image 2026-10-29 at 15 58 34" src="https://github.com/user-attachments/assets/c629c92a-a17c-46cf-b709-7bfb25191f4a" />
 
 
 
