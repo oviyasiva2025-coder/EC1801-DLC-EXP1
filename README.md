@@ -20,49 +20,63 @@ exp1_boolean_min_tb.v	Verilog testbench
 exp1_boolean_min.vcd	VCD waveform dump generated during simulation
 
 ## Verilog Program
-module fun (
+module boolfun (
 input wire A, 
 input wire B, 
+input wire C, 
+input wire D, 
 output wire F 
 ); 
-assign F = (~A) | B ;    // F = A' + B 
+assign F = (~B & ~D)|(B & D) ;    // F = B'D' + BD 
 endmodule
-
-
-
-
 
 ## TestBench Program
-module tb;
-    reg A, B;
-    wire F;
-    // Instantiate the design under test (DUT)
-    fun uut (
-        .A(A),
-        .B(B),
-        .F(F)
-    );
 
-    initial begin
-        // ---- VCD dump setup ----
-        $dumpfile("fun.vcd");   // name of the VCD file to be generated
-        $dumpvars(0, tb);   // dump all signals in this testbench hierarchy
+module boolfun_tb;
 
-        // ---- Apply all 4 input combinations ----
-        $monitor("Time=%0t A=%b B=%b | F=%b", $time, A, B, F);
+reg A, B, C, D;
+wire F;
 
-        A = 0; B = 0; #10;
-        A = 0; B = 1; #10;
-        A = 1; B = 0; #10;
-        A = 1; B = 1; #10;
+boolfun uut (
+    .A(A),
+    .B(B),
+    .C(C),
+    .D(D),
+    .F(F)
+);
 
-        #10 $finish;
-    end
+initial begin
+
+    $dumpfile("boolfun.vcd");
+    $dumpvars(0, boolfun_tb);
+
+    $monitor("Time=%0t A=%b B=%b C=%b D=%b F=%b",
+              $time, A, B, C, D, F);
+
+    A=0; B=0; C=0; D=0; #10;
+    A=0; B=0; C=0; D=1; #10;
+    A=0; B=0; C=1; D=0; #10;
+    A=0; B=0; C=1; D=1; #10;
+
+    A=0; B=1; C=0; D=0; #10;
+    A=0; B=1; C=0; D=1; #10;
+    A=0; B=1; C=1; D=0; #10;
+    A=0; B=1; C=1; D=1; #10;
+
+    A=1; B=0; C=0; D=0; #10;
+    A=1; B=0; C=0; D=1; #10;
+    A=1; B=0; C=1; D=0; #10;
+    A=1; B=0; C=1; D=1; #10;
+
+    A=1; B=1; C=0; D=0; #10;
+    A=1; B=1; C=0; D=1; #10;
+    A=1; B=1; C=1; D=0; #10;
+    A=1; B=1; C=1; D=1; #10;
+
+    $finish;
+end
 
 endmodule
-
-
-
 
 
 
@@ -70,9 +84,8 @@ endmodule
     
 ## Truth Table
  
-<img width="795" height="311" alt="image" src="https://github.com/user-attachments/assets/dd4ba5b9-016b-4ae5-a693-f309c60c4c0e" />
+<img width="622" height="675" alt="WhatsApp Image 2026-10-29 at 15 58 45" src="https://github.com/user-attachments/assets/65d3ae51-f80b-4684-9df5-c68b7a00ee92" />
 
-## Simulation Procedure
 STEP 1 – Open Terminal
 Open a terminal in the experiment folder.
 bash
@@ -97,6 +110,8 @@ dve -full64
 Other option
 dve -full64 &
 A DVE environment will open.
+### Expected Result
+<img width="598" height="369" alt="WhatsApp Image 2026-10-29 at 15 59 00" src="https://github.com/user-attachments/assets/4c7d7f7b-4f80-4928-9de4-898076bbe389" />
 
 ## DVE Waveform Verification
 In DVE:
@@ -114,34 +129,14 @@ o	F
 The waveform should agree with the truth table.
  <img width="1868" height="1015" alt="Screenshot 2026-10-14 120544" src="https://github.com/user-attachments/assets/3e854c63-cfac-487d-938b-66640c3e4124" />
 
-### Expected Result
-The Boolean function
-F(A,B,C,D)=Σm(0,2,5,7,8,10,13,15), which simplifies to F=B'D'+BD.
-was minimized to F=B'D'+BD.
-and successfully implemented using Verilog HDL.
+
 
 ## OUTPUT
-<img width="1920" height="1080" alt="Screenshot 2026-10-21 155735" src="https://github.com/user-attachments/assets/6ee88093-a47e-4449-8354-4a4a3cf82ee1" />
+<img width="1366" height="1157" alt="WhatsApp Image 2026-10-29 at 15 58 34" src="https://github.com/user-attachments/assets/9d16b8b0-2f62-492e-b951-e54c4b7395c0" />
 
 
 
 
-The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis.
-7. Viva-Voce Questions
-1.	What is Boolean function minimization?
-2.	What is a minterm?
-3.	What is a Karnaugh map?
-4.	Why is Boolean minimization required?
-5.	What are universal gates?
-6.	What is the difference between SOP and POS?
-7.	What is the purpose of a Verilog testbench?
-8.	Why is a VCD file generated?
-9.	What is the purpose of ./simv?
-10.	What is the purpose of DVE?
-11.	What is the difference between simulation and synthesis?
-12.	Why are A and C absent from the minimized expression?
-13.	What is the purpose of $dumpfile?
-14.	What is the purpose of $dumpvars?
 
 Result
 Thus, the Boolean function was minimized, implemented using Verilog HDL, successfully simulated using Synopsys VCS, and verified using Synopsys DVE.
