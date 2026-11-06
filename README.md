@@ -9,10 +9,16 @@ To minimize and implement a Boolean function using logic gates and verify the fu
 •	Linux Terminal
 •	Verilog HDL
 ## Boolean Function
-Consider the Boolean function:
-F(A,B,C,D)=Σm(0,2,5,7,8,10,13,15)
-The minimized Boolean expression is: F=B'D'+BD
-The function is implemented using Verilog HDL.
+module boolfun (
+input wire A, 
+input wire B, 
+input wire C, 
+input wire D, 
+output wire F 
+); 
+assign F = (~B & ~D)|(B & D) ;    // F = B'D' + BD 
+endmodule
+
 ## Files Used
 File	Description
 exp1_boolean_min.v	Verilog design file
@@ -76,12 +82,8 @@ initial begin
 end
 
 endmodule
-
-
-    
 ## Truth Table
- 
-<img width="622" height="675" alt="WhatsApp Image 2026-10-29 at 15 58 45" src="https://github.com/user-attachments/assets/e6fdc840-bed7-41ba-b78a-1ef5fee6da19" />
+<img width="719" height="308" alt="exp 1" src="https://github.com/user-attachments/assets/d4bb28b2-b2c6-4a99-9f7c-48d65a6383f1" />
 
 STEP 1 – Open Terminal
 Open a terminal in the experiment folder.
@@ -108,9 +110,7 @@ Other option
 dve -full64 &
 A DVE environment will open.
 ### Expected Result
-<img width="598" height="369" alt="WhatsApp Image 2026-10-29 at 15 59 00" src="https://github.com/user-attachments/assets/370cd583-c446-459f-9c3b-968382de12fa" />
 
-## DVE Waveform Verification
 In DVE:
 1.	Open the testbench hierarchy.
 2.	Locate the signals:
@@ -124,13 +124,12 @@ o	F
 5.	Verify that F = 1 whenever B and D are equal.
 6.	Verify that F = 0 whenever B and D are different.
 The waveform should agree with the truth table.
- <img width="1868" height="1015" alt="Screenshot 2026-10-14 120544" src="https://github.com/user-attachments/assets/3e854c63-cfac-487d-938b-66640c3e4124" />
-
+ 
+<img width="720" height="403" alt="expt 1" src="https://github.com/user-attachments/assets/09394df8-a5c3-4f61-9ddc-09ee0a4cc434" />
 
 
 ## OUTPUT
-<img width="1366" height="1157" alt="WhatsApp Image 2026-10-29 at 15 58 34" src="https://github.com/user-attachments/assets/c629c92a-a17c-46cf-b709-7bfb25191f4a" />
-
+<img width="1920" height="1080" alt="Screenshot 2026-11-06 140923" src="https://github.com/user-attachments/assets/1ab09f36-3785-4e62-80df-48b7faf97798" />
 
 
 
